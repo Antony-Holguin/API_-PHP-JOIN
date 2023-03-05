@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             VALUES
             (:nombre_libro, :isbn_libro, :autor, :email, :biblioteca_id)";
       $statement = $dbConn->prepare($sql);
-      bindAllValues($statement, $input);
+      asociar_parametros_a_sql($statement, $input);
       $statement->execute();
       $postId = $dbConn->lastInsertId();
       if($postId)
@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT')
     if ($row_count>0) {
       $input = $_GET;
       $postId = $input['nombre_libro'];
-      $fields = getParams($input);
+      $fields = obtener_parametros_de_input($input);
 
       $sql = "
             UPDATE libros
@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT')
              ";
 
       $statement = $dbConn->prepare($sql);
-      bindAllValues($statement, $input);
+      asociar_parametros_a_sql($statement, $input);
 
       $statement->execute();
       header("HTTP/1.1 200 OK");

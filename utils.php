@@ -17,7 +17,7 @@
 
 
  //Obtener parametros para updates
- function getParams($input)
+ function obtener_parametros_de_input($input)
  {
     $filterParams = [];
     foreach($input as $param => $value)
@@ -28,7 +28,7 @@
 	}
 
   //Asociar todos los parametros a un sql
-	function bindAllValues($statement, $params)
+	function asociar_parametros_a_sql($statement, $params)
   {
 		foreach($params as $param => $value)
     {
